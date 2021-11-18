@@ -3,9 +3,11 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const mangaSchema = Schema({
-  _id: Schema.Types.ObjectId,
   name: String,
-  alias: String,
+  alias: {
+    type: String,
+    required: true,
+  },
   author: [String],
   type: [String],
   genre: [String],
