@@ -1,8 +1,12 @@
 const express = require('express');
-const Manga = require('../models/manga');
+const { getVol } = require('../controllers/vol');
+const { createChapter } = require('../controllers/chapter');
+const chapterRouter = require('./chapters');
 
-const router = express.Router();
+const router = express.Router({ mergeParams: true });
 
-router.use('/', () => {});
+router.route('/').post(createChapter).get(getVol);
+
+router.use('/:chapter', chapterRouter);
 
 module.exports = router;

@@ -1,9 +1,9 @@
 const express = require('express');
-const Manga = require('../models/manga');
 
-const router = express.Router();
+const router = express.Router({ mergeParams: true });
 
-router.use('/',()=>{})
-
+router.route('/').get((req, res) => {
+  console.log(req.params);
+});
 
 module.exports = router;

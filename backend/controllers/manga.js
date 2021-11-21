@@ -1,4 +1,5 @@
 const Manga = require('../models/manga');
+const Vol = require('../models/vol');
 
 const createManga = async (req, res) => {
   const manga = new Manga(req.body);
@@ -23,15 +24,23 @@ const createManga = async (req, res) => {
 
 const getManga = async (req, res) => {
   const { title } = req.params;
+  const { id } = req.body;
 
-  Manga.findOne({ alias: title }).then((manga) => {
-    if (manga) {
-      res.send(manga);
-    } else {
-      res.status(404);
-      res.send('Манга не найдена');
-    }
-  });
+  // Manga.findOne({ alias: title }).then((manga) => {
+  //   if (manga) {
+  //     res.send(manga);
+  //   } else {
+  //     res.status(404);
+  //     res.send('Манга не найдена');
+  //   }
+  // });
+  // Manga.find({ alias: title })
+  //   .populate('vols')
+  //   .exec()
+  //   .then((t) => console.log(t));
+  const manga = await Manga.findOne({ alias: title });
+
+  manga.populate('vols').then((m) => res.send(m));
 };
 
 const getMangas = async (req, res) => {

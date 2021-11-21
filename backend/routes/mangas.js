@@ -6,6 +6,7 @@ const router = express.Router();
 
 router.route('/').get(getMangas).post(createManga).delete(deleteManga);
 
+// api/mangas/title
 router.use('/:title', titleRouter);
 
 module.exports = router;

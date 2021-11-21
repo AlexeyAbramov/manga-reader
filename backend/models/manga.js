@@ -19,7 +19,11 @@ const mangaSchema = Schema({
   status: String,
   year: Number,
   description: String,
-  cover: String,
+  cover: {
+    type: String,
+    default: '/cover.png',
+  },
+  vols: [{ type: Schema.Types.ObjectId, ref: 'vol' }],
 });
 
 module.exports = mongoose.model('manga', mangaSchema);

@@ -2,9 +2,6 @@ const express = require('express');
 const dotenv = require('dotenv');
 const cors = require('cors');
 const mongoose = require('mongoose');
-const Manga = require('./models/manga');
-const Vol = require('./models/vol');
-const Chapter = require('./models/chapter');
 const router = require('./routes');
 
 dotenv.config();
