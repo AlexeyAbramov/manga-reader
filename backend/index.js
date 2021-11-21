@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const Manga = require('./models/manga');
 const Vol = require('./models/vol');
 const Chapter = require('./models/chapter');
-const mangaRouter = require('./routes/manga');
+const router = require('./routes');
 
 dotenv.config();
 const app = express();
@@ -26,4 +26,4 @@ app.get('/', (req, res) => {
   res.send('Hello world!');
 });
 
-app.use('/api/manga', mangaRouter);
+app.use('/api/mangas', router);

@@ -5,11 +5,12 @@ const Schema = mongoose.Schema;
 const mangaSchema = Schema({
   name: {
     type: String,
-    required: true
+    required: true,
   },
   alias: {
     type: String,
     required: true,
+    unique: true,
   },
   author: [String],
   type: [String],
