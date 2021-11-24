@@ -23,4 +23,4 @@ app.get('/', (req, res) => {
   res.send('Hello world!');
 });
 
-app.use('/api/mangas', router);
+app.use('/api', router);

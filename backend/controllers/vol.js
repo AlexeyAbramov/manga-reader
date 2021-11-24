@@ -1,16 +1,17 @@
+const { getRequiredFields } = require('../helpers');
 const Vol = require('../models/vol');
+const Manga = require('../models/manga');
 
 const createVol = async (req, res) => {
-  const vol = await new Vol(req.body);
-
-  await vol
-    .save()
+  await Vol.findOne({ vol_number: req.body.vol_number })
     .then((vol) => {
-      res.status(201).json(vol);
+      if (!vol) {
+        console.log('his');
+        next(vol);
+      }
+      console.log('hi', vol);
     })
-    .catch((e) => {
-      res.status(400).send('Ошибка');
-    });
+    .catch((e) => console.log(e.stack));
 };
 
 const getVol = async (req, res) => {

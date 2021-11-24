@@ -16,9 +16,3 @@ const createChapter = async (req, res) => {
 module.exports = {
   createChapter,
 };
-
-Chapter.find()
-  .populate('vol')
-  .populate('manga')
-  .exec()
-  .then((chapter) => console.log('chapter', { chapter }));

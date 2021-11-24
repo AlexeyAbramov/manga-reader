@@ -1,12 +1,8 @@
 const express = require('express');
-const { getVol } = require('../controllers/vol');
-const { createChapter } = require('../controllers/chapter');
-const chapterRouter = require('./chapters');
+const { getVol, createVol } = require('../controllers/vol');
 
 const router = express.Router({ mergeParams: true });
 
-router.route('/').post(createChapter).get(getVol);
-
-router.use('/:chapter', chapterRouter);
+router.route('/').post(createVol).get(getVol);
 
 module.exports = router;
