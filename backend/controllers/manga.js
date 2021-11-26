@@ -52,18 +52,19 @@ const getManga = async (req, res) => {
 };
 
 const getMangaBySearch = async (req, res) => {
-  const { term } = req.query;
-  if (term) {
+  const term = req.query.term;
+  const limit = req.query.limit ?? 50;
 
-    Manga
-      .find({ name: { $regex: term, $options: 'i' } })
-      .populate(mangaPopulate)
-      .exec((err, mangas) => {
-        if (err) return res.status(404).json(err)
+  if (!term) return res.status(404).json('Поле search пустое')
 
-        res.json(mangas)
-      })
-  }
+  Manga
+    .find({ name: { $regex: term, $options: 'i' } }, 'name cover')
+    .limit(limit)
+    .exec((err, mangas) => {
+      if (err) return res.status(404).json(err)
+
+      res.json(mangas)
+    })
 };
 
 const getMangas = async (req, res) => {
@@ -73,7 +74,11 @@ const getMangas = async (req, res) => {
 };
 
 const updateManga = async (req, res) => {
-  const manga = Manga.findOne()
+  const id = req.body.id;
+
+  // Manga.findByIdAndUpdate(id, { $set: {} }, (err, manga) => {
+  //   console.log(manga)
+  // })
 };
 
 const deleteManga = async (req, res) => {

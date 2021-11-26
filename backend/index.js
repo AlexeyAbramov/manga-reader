@@ -12,6 +12,8 @@ const PORT = process.env.PORT || 4000;
 app.use(express.json());
 app.use(cors());
 
+app.use('/mangas', express.static(`${__dirname}/mangas`))
+
 mongoose.connect(
   `mongodb+srv://${process.env.MONGODB_URI}/${process.env.MONGODB_NAME}`,
   () => console.log('Db conneted')
@@ -21,8 +23,5 @@ app.listen(PORT, () => {
   console.log(`Server run on port ${PORT}`);
 });
 
-app.get('/', (req, res) => {
-  res.send('Hello world!');
-});
 
-app.use('/api', router);
+app.use(process.env.API, router);

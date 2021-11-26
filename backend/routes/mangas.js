@@ -13,14 +13,15 @@ const router = express.Router();
 router.route('/')
     .get(getMangas)
     .post(createManga)
-    .put(updateManga)
     .delete(deleteManga);
 
 // api/mangas/search
-router.get('/search', getMangaBySearch)
+router.get('/search', getMangaBySearch);
 
 // api/mangas/title
-router.get('/:title', getManga);
+router.route('/:title')
+    .get(getManga)
+    .put(updateManga);
 
 
 module.exports = router;
