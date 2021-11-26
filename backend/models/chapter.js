@@ -16,6 +16,11 @@ const chapterSchema = new Schema({
     type: String,
     required: true,
   },
+  chapter_number: {
+    type: Number,
+    required: true,
+    unique: true
+  }
 });
 
 module.exports = mongoose.model('chapter', chapterSchema);

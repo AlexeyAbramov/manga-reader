@@ -7,6 +7,8 @@ const router = require('./routes');
 dotenv.config();
 const app = express();
 
+const PORT = process.env.PORT || 4000;
+
 app.use(express.json());
 app.use(cors());
 
@@ -15,8 +17,8 @@ mongoose.connect(
   () => console.log('Db conneted')
 );
 
-app.listen(process.env.PORT, () => {
-  console.log(`Server run on port ${process.env.PORT}`);
+app.listen(PORT, () => {
+  console.log(`Server run on port ${PORT}`);
 });
 
 app.get('/', (req, res) => {
