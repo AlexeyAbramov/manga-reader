@@ -1,6 +1,8 @@
 const Manga = require('../models/manga');
 const Chapter = require('../models/chapter');
 
+const { getRequiredFields } = require('../helpers');
+
 const mangaPopulate = {
   path: 'vols',
   populate: {
@@ -15,7 +17,6 @@ const mangaPopulate = {
   }
 };
 
-const { getRequiredFields } = require('../helpers');
 
 const createManga = async (req, res) => {
   const manga = new Manga(req.body);
@@ -53,7 +54,7 @@ const getManga = async (req, res) => {
 
 const getMangaBySearch = async (req, res) => {
   const term = req.query.term;
-  const limit = req.query.limit ?? 50;
+  const limit = 50;
 
   if (!term) return res.status(404).json('Поле search пустое')
 
