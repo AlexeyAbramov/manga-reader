@@ -1,0 +1,16 @@
+$bg_color: #3F007A;
+
+*,
+*::after,
+*::before{
+    box-sizing: border-box;
+}
+
+body{
+    background-color: $bg_color;
+    margin: 0;
+    padding: 0;
+}
+li{
+    list-style-type: none;
+}
